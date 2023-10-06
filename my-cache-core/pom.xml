@@ -11,12 +11,37 @@
 
     <artifactId>my-cache-core</artifactId>
 
-    <!--到入对my-cache-api的依赖-->
+
     <dependencies>
+        <!--引入对my-cache-api的依赖-->
         <dependency>
             <groupId>com.github.thewangyang</groupId>
             <artifactId>my-cache-api</artifactId>
         </dependency>
+
+        <!--引入对外部模块的依赖，使用的第三方日志类-->
+        <dependency>
+            <groupId>com.github.houbb</groupId>
+            <artifactId>log-integration</artifactId>
+            <version>1.1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.houbb</groupId>
+            <artifactId>heaven</artifactId>
+            <version>0.1.169</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.houbb</groupId>
+            <artifactId>aop-core</artifactId>
+            <version>0.0.4</version>
+        </dependency>
+
+        <!--使用的alibaba的fastjson依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
     </dependencies>
 
     <properties>
