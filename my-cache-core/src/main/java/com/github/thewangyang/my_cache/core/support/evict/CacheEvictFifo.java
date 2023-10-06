@@ -44,5 +44,4 @@ public class CacheEvictFifo<K, V> extends AbstractCacheEvict<K, V> {
         return result;
     }
 
-
 }
