@@ -49,6 +49,8 @@ public class CacheEvictLru<K, V> extends AbstractCacheEvict<K, V>{
             result = new CacheEntry<>(evictKey, evictValue);
         }
 
+        log.debug("CacheEvictLru return result = {}", result);
+
         return result;
     }
 
