@@ -163,7 +163,7 @@ public class CacheEvictLfu<K, V> extends AbstractCacheEvict<K, V> {
 
         //移除元素
         set.remove(freqNode);
-        log.debug("frequency = {} 移除元素节点：{}", freq, freqNode);
+        log.debug("frequency = {} 移除元素节点：{}", frequency, freqNode);
 
         //更新minFreq
         if(minFreq == frequency && set.isEmpty()){
