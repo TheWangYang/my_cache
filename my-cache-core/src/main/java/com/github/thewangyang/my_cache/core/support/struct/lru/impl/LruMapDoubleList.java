@@ -36,7 +36,7 @@ public class LruMapDoubleList<K, V> implements ILruMap<K, V> {
         this.tail = new DoubleListNode<>();
         this.indexMap = new HashMap<>();
 
-        //头结点的next指针指向tail结点
+        //head结点的next指针指向tail结点
         this.head.next(this.tail);
         //尾结点的pre指针指向head结点
         this.tail.pre(this.head);

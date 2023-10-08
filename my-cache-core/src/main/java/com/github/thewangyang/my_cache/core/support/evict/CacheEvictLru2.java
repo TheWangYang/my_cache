@@ -22,10 +22,10 @@ public class CacheEvictLru2<K, V> extends AbstractCacheEvict<K, V> {
     //定义log对象
     private final Log log = LogFactory.getLog(CacheEvictLru2.class);
 
-    //定义第1次访问的LRU
+    //定义首次访问的LRU
     private final ILruMap<K, V> firstLruMap;
 
-    //定义第2次访问的lru
+    //定义多次访问的lru
     private final ILruMap<K, V> secondLruMap;
 
     //重写默认构造函数
@@ -39,7 +39,11 @@ public class CacheEvictLru2<K, V> extends AbstractCacheEvict<K, V> {
     //重写淘汰策略函数
     @Override
     protected ICacheEntry<K, V> doEvict(ICacheEvictContext<K, V> context) {
+
+        //定义需要返回的CacheEntry结果对象
         ICacheEntry<K, V> result = null;
+
+        //得到保存的cache对象
         final ICache<K, V> cache = context.cache();
 
         if(cache.size() >= context.size()){
@@ -68,6 +72,7 @@ public class CacheEvictLru2<K, V> extends AbstractCacheEvict<K, V> {
     //重写updateKey函数
     @Override
     public void updateKey(K key) {
+
         //判断是否在firstMap或secondMap中出现
         if(firstLruMap.contains(key) || secondLruMap.contains(key)){
             //删除key
@@ -83,6 +88,7 @@ public class CacheEvictLru2<K, V> extends AbstractCacheEvict<K, V> {
 
     }
 
+    //重写removeKey()函数
     @Override
     public void removeKey(K key) {
         //多次访问map删除逻辑
