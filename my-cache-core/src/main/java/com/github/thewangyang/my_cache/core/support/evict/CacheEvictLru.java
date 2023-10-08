@@ -26,8 +26,6 @@ public class CacheEvictLru<K, V> extends AbstractCacheEvict<K, V>{
     //其中保存的为key信息
     private final List<K> list = new LinkedList<>();
 
-    //
-
     @Override
     protected ICacheEntry<K, V> doEvict(ICacheEvictContext<K, V> context) {
         //实现LRU淘汰策略
@@ -59,11 +57,12 @@ public class CacheEvictLru<K, V> extends AbstractCacheEvict<K, V>{
     public void updateKey(K key) {
         //移除最后一个key
         this.list.remove(key);
+        //将本次使用的key放到最前边 index = 0 的位置
         this.list.add(0, key);
     }
 
-    //重写removeKey方法
 
+    //重写removeKey方法
     @Override
     public void removeKey(K key) {
         this.list.remove(key);

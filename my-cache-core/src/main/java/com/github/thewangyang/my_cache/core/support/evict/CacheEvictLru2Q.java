@@ -35,7 +35,6 @@ public class CacheEvictLru2Q<K, V> extends AbstractCacheEvict<K, V>{
     //定义尾结点
     private DoubleListNode<K, V> tail;
 
-
     //定义indexMap，保存key-node的对应关系
     private Map<K, DoubleListNode<K, V>> indexMap;
 
@@ -94,7 +93,7 @@ public class CacheEvictLru2Q<K, V> extends AbstractCacheEvict<K, V>{
     public void updateKey(K key) {
         DoubleListNode<K, V> node = indexMap.get(key);
         if(ObjectUtil.isNotNull(node) || firstQueue.contains(key)){
-            //删除key
+            //先删除key
             this.removeKey(key);
 
             //加入到LRU中

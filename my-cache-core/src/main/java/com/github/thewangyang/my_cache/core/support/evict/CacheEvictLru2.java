@@ -77,11 +77,13 @@ public class CacheEvictLru2<K, V> extends AbstractCacheEvict<K, V> {
         if(firstLruMap.contains(key) || secondLruMap.contains(key)){
             //删除key
             this.removeKey(key);
+
             //加入到secondLruMap中
             secondLruMap.updateKey(key);
 
             log.debug("key: {} 多次访问，加入到 secondLruMap 中", key);
         }else{//不在两个lruMap中
+            //那么放入到首次访问LruMap中
             firstLruMap.updateKey(key);
             log.debug("key: {} 首次访问，加入到 firstLruMap 中", key);
         }

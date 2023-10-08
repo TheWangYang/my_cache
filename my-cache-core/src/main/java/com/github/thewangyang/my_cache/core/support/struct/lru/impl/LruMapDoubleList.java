@@ -43,7 +43,7 @@ public class LruMapDoubleList<K, V> implements ILruMap<K, V> {
     }
 
 
-    //移除最老的
+    //移除最老结点函数
     @Override
     public ICacheEntry<K, V> removeEldest() {
         //获得尾巴结点的前一个元素
