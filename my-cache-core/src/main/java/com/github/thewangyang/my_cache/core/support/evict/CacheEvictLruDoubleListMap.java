@@ -86,6 +86,7 @@ public class CacheEvictLruDoubleListMap<K, V> extends AbstractCacheEvict<K, V>{
 
     @Override
     public void removeKey(K key) {
+
         //首先从indexMap中得到对应的结点，并判断是否存在
         DoubleListNode<K, V> node = this.indexMap.get(key);
 
