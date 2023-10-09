@@ -44,12 +44,12 @@ public class CacheEvictLruDoubleListMap<K, V> extends AbstractCacheEvict<K, V>{
 
         if(cache.size() >= context.size()){
             //获得尾巴节点的前一个元素结点
-            DoubleListNode<K, V> tailPre = this.head.pre();
+            DoubleListNode<K, V> tailPre = this.tail.pre();
 
             //判断是否为head结点
             if(tailPre == this.head){
                 log.error("当前列表为空，无法进行删除");
-                throw new CacheRuntimeException("不可删除头结点!");
+                throw new CacheRuntimeException("不可删除头结点!");//扔出异常之后即return
             }
 
             //获得删除结点的key和value
@@ -63,13 +63,12 @@ public class CacheEvictLruDoubleListMap<K, V> extends AbstractCacheEvict<K, V>{
 
 
     //重写放入元素函数
-
     @Override
     public void updateKey(K key) {
         //不管有没有，直接执行removeKey()函数
         this.removeKey(key);
 
-        //直接插入头部
+        //直接插入到head结点之后
         DoubleListNode<K, V> newNode = new DoubleListNode<>();
         newNode.key(key);
 
@@ -81,8 +80,10 @@ public class CacheEvictLruDoubleListMap<K, V> extends AbstractCacheEvict<K, V>{
         headNextNode.pre(newNode);
         newNode.next(headNextNode);
 
+        //放入到indexMap中
         indexMap.put(key, newNode);
     }
+
 
     @Override
     public void removeKey(K key) {
@@ -100,6 +101,7 @@ public class CacheEvictLruDoubleListMap<K, V> extends AbstractCacheEvict<K, V>{
         pre.next(next);
         next.pre(pre);
 
+        //移除indexMap中的key对应的结点
         this.indexMap.remove(key);
 
     }
