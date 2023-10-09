@@ -3,6 +3,8 @@ package com.github.thewangyang.my_cache.core.support.expire;
 
 import com.github.houbb.heaven.util.util.CollectionUtil;
 import com.github.houbb.heaven.util.util.MapUtil;
+
+
 import com.github.thewangyang.my_cache.api.ICache;
 import com.github.thewangyang.my_cache.api.ICacheExpire;
 import com.github.thewangyang.my_cache.api.ICacheRemoveListener;
@@ -22,10 +24,11 @@ import java.util.concurrent.TimeUnit;
 public class CacheExpire<K, V> implements ICacheExpire<K, V> {
 
     //设置单次清空的数量限制
+    //所有实例共享同一个变量，是类级别的变量
     private static final int LIMIT = 100;
 
     //定义过期Map对象
-    private Map<K, Long> expireMap = new HashMap<>();
+    private final Map<K, Long> expireMap = new HashMap<>();
 
     //缓存实现
     private final ICache<K, V> cache;
@@ -36,7 +39,8 @@ public class CacheExpire<K, V> implements ICacheExpire<K, V> {
     //构造函数
     public CacheExpire(ICache<K, V> cache){
         this.cache = cache;
-        this.init();//定义的初始化方法
+        //调用初始化方法
+        this.init();
     }
 
     //初始化任务
@@ -58,6 +62,7 @@ public class CacheExpire<K, V> implements ICacheExpire<K, V> {
             //获得key进行处理
             //定义count变量记录清空的数量
             int count = 0;
+
             //使用for循环遍历expireMap中的key
             for(Map.Entry<K, Long> entry: expireMap.entrySet()){
 
@@ -110,6 +115,7 @@ public class CacheExpire<K, V> implements ICacheExpire<K, V> {
     public Long expireTime(K key) {
         return expireMap.get(key);
     }
+
 
     //编写的expireKey()函数
     //参数为过期的key和期望过期的时间
