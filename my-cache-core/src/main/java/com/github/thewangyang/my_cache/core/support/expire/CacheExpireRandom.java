@@ -18,7 +18,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-//实现缓存到期随机删除类
+
+
+//实现缓存过期随机删除类
 public class CacheExpireRandom<K, V> implements ICacheExpire<K, V>{
 
     private final Log log = LogFactory.getLog(CacheExpireRandom.class);
@@ -131,35 +133,6 @@ public class CacheExpireRandom<K, V> implements ICacheExpire<K, V>{
         return list.get(randomIndex);
     }
 
-    //定义删除单个过期key的方法
-    private boolean expireKey(K key, final Long expireAt){
-        if(expireAt == null){
-            return false;
-        }
-
-        //得到当前时间
-        long currentTime = System.currentTimeMillis();
-
-        if(currentTime >= expireAt){
-            //当前时间超过了元素过期时间，执行移除
-            expireMap.remove(key);
-
-            V expireValue = cache.remove(key);
-
-            //执行淘汰监听器，监听context
-            ICacheRemoveListenerContext<K,V> removeListenerContext = CacheRemoveListenerContext.<K,V>newInstance().key(key).value(expireValue).type(CacheRemoveType.EXPIRE.code());
-
-            //循环实现对监听器的设置
-            for(ICacheRemoveListener<K, V> listener: cache.removeListeners()){
-                listener.listen(removeListenerContext);
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
 
     //设置
     @Override
@@ -194,5 +167,36 @@ public class CacheExpireRandom<K, V> implements ICacheExpire<K, V>{
     public Long expireTime(K key) {
         return expireMap.get(key);
     }
+
+
+    //定义删除单个过期key的方法
+    private boolean expireKey(K key, final Long expireAt){
+        if(expireAt == null){
+            return false;
+        }
+
+        //得到当前时间
+        long currentTime = System.currentTimeMillis();
+
+        if(currentTime >= expireAt){
+            //当前时间超过了元素过期时间，执行移除
+            expireMap.remove(key);
+
+            V expireValue = cache.remove(key);
+
+            //执行淘汰监听器，监听context
+            ICacheRemoveListenerContext<K,V> removeListenerContext = CacheRemoveListenerContext.<K,V>newInstance().key(key).value(expireValue).type(CacheRemoveType.EXPIRE.code());
+
+            //循环实现对监听器的设置
+            for(ICacheRemoveListener<K, V> listener: cache.removeListeners()){
+                listener.listen(removeListenerContext);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
 
 }

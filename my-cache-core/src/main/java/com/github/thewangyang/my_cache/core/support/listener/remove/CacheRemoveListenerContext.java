@@ -3,7 +3,9 @@ package com.github.thewangyang.my_cache.core.support.listener.remove;
 
 import com.github.thewangyang.my_cache.api.ICacheRemoveListenerContext;
 
-//定义监听器实现类，监听context对象
+
+// 定义监听器上下文类
+// 监听context对象
 public class CacheRemoveListenerContext<K, V> implements ICacheRemoveListenerContext<K, V> {
 
     //定义key
