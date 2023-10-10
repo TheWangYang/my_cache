@@ -13,6 +13,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+
+
 // 缓存过期
 // 策略：排序实现
 public class CacheExpireSort<K, V> implements ICacheExpire<K, V> {
@@ -23,7 +25,7 @@ public class CacheExpireSort<K, V> implements ICacheExpire<K, V> {
     private static final int LIMIT = 100;
 
     // 排序缓存存储Map
-    // 按照时间排序
+    // 按照时间排序，即将过期的时间排在前边
     // key为Long类型时间
     // value为List<K>
     private final Map<Long, List<K>> sortMap = new TreeMap<>(new Comparator<Long>() {
@@ -33,7 +35,6 @@ public class CacheExpireSort<K, V> implements ICacheExpire<K, V> {
             return (int)(o1 - o2);
         }
     });
-
 
     // 定义过期Map
     private final Map<K, Long> expireMap = new HashMap<>();
@@ -142,7 +143,8 @@ public class CacheExpireSort<K, V> implements ICacheExpire<K, V> {
     }
 
 
-    //刷新expire过期缓存map
+    //刷新expire过期缓存Map
+    //同步expireMap和keyList数组
     @Override
     public void refreshExpire(Collection<K> keyList) {
         //首先判断是否为空，为空直接返回
@@ -183,10 +185,14 @@ public class CacheExpireSort<K, V> implements ICacheExpire<K, V> {
             final long currentTime = System.currentTimeMillis();
 
             if(expireAt >= currentTime){
+                //移除expireMap中的key
                 expireMap.remove(key);
 
+                //移除sortMap中的key
                 List<K> expireKeys = sortMap.get(expireAt);
                 expireKeys.remove(key);
+
+                //将移除key元素之后的expireKeys重新放入到sortMap中
                 sortMap.put(expireAt, expireKeys);
             }
         }
