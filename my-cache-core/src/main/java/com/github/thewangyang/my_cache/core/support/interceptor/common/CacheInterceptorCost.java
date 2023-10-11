@@ -4,16 +4,18 @@ package com.github.thewangyang.my_cache.core.support.interceptor.common;
 import com.github.houbb.heaven.util.util.CollectionUtil;
 import com.github.houbb.log.integration.core.Log;
 import com.github.houbb.log.integration.core.LogFactory;
+
+
 import com.github.thewangyang.my_cache.api.ICacheInterceptor;
 import com.github.thewangyang.my_cache.api.ICacheInterceptorContext;
 import com.github.thewangyang.my_cache.api.ICacheSlowListener;
 import com.github.thewangyang.my_cache.core.support.listener.slow.CacheSlowListenerContext;
 
-import java.util.Collection;
 import java.util.List;
 
+
+
 // 定义耗时统计类
-// 统计
 public class CacheInterceptorCost<K, V> implements ICacheInterceptor<K, V> {
     // 定义log对象
     private static final Log log = LogFactory.getLog(CacheInterceptorCost.class);
