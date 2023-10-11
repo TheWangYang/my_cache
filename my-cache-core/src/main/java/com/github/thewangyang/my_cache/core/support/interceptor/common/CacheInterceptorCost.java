@@ -41,7 +41,22 @@ public class CacheInterceptorCost<K, V> implements ICacheInterceptor<K, V> {
         // 判断slowListenerList是否为空
         if(CollectionUtil.isNotEmpty(slowListenerList)){
             // 得到CacheSlowListenerContext
-            CacheSlowListenerContext cacheSlowListenerContext
+            CacheSlowListenerContext cacheSlowListenerContext = CacheSlowListenerContext.newInstance().startTimeMills(context.startMills())
+                    .endTimeMills(context.endMills())
+                    .costTimeMills(costMills)
+                    .methodName(methodName)
+                    .params(context.params())
+                    .result(context.result())
+                    ;
+
+            // 设置多个慢日志监听器对象，可以考虑不同的慢日志级别，做不同的处理
+            for(ICacheSlowListener slowListener : slowListenerList) {
+                long slowThanMills = slowListener.slowerThanMills();
+                if(costMills >= slowThanMills) {
+                    slowListener.listen(cacheSlowListenerContext);
+                }
+            }
         }
+
     }
 }

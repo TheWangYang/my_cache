@@ -12,12 +12,11 @@ public interface ICacheInterceptorContext<K, V> {
     //执行的方法信息
     Method method();
 
-
     //执行的参数
     Object[] params();
 
     //方法执行的结果
-    Object[] results();
+    Object[] result();
 
     //方法的开始时间
     long startMills();

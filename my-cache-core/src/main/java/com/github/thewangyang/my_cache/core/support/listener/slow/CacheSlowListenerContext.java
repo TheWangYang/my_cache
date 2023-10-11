@@ -62,7 +62,7 @@ public class CacheSlowListenerContext implements ICacheSlowListenerContext {
         return result;
     }
 
-    public CacheSlowListenerContext params(Object[] result) {
+    public CacheSlowListenerContext result(Object[] result) {
         this.result = result;
         return this;
     }
@@ -91,7 +91,7 @@ public class CacheSlowListenerContext implements ICacheSlowListenerContext {
 
     @Override
     public long costTimeMills() {
-        return 0;
+        return costTimeMills;
     }
 
     public CacheSlowListenerContext costTimeMills(long costTimeMills) {

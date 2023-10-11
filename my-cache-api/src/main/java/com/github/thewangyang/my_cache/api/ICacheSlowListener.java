@@ -9,5 +9,6 @@ public interface ICacheSlowListener {
     void listen(final ICacheSlowListenerContext context);
 
     //定义慢日志的阈值
+    // 超过该阈值的，可以进行监听
     long slowerThanMills();
 }
