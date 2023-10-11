@@ -31,7 +31,7 @@ public interface ICache<K, V> extends Map<K, V> {
     //加载信息
     ICacheLoad<K, V> load();
 
-    //持久化类
+    // 得到cache持久化对象
     ICachePersist<K,V> persist();
 
     //淘汰策略

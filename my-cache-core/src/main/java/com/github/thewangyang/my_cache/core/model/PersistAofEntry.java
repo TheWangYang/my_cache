@@ -3,8 +3,8 @@ package com.github.thewangyang.my_cache.core.model;
 
 import java.util.Arrays;
 
-//定义持久化append to file类
-//其中记录了aof对象的详细信息
+// 定义持久化cache对象的持久化Entry类
+// 其中记录了aof对象的详细信息
 public class PersistAofEntry {
 
     //定义参数信息
@@ -29,8 +29,8 @@ public class PersistAofEntry {
         this.params = params;
     }
 
-    //定义methodName的getter和setter方法
 
+    //定义methodName的getter和setter方法
     public String getMethodName() {
         return methodName;
     }
