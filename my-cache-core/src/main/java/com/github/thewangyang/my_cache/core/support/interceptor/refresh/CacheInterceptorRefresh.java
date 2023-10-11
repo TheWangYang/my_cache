@@ -18,6 +18,8 @@ public class CacheInterceptorRefresh<K, V> implements ICacheInterceptor<K, V> {
     public void before(ICacheInterceptorContext<K, V> context) {
         log.debug("Refresh start");
         final ICache<K, V> cache = context.cache();
+        // 先得到CacheExpire对象
+        // 然后调用该对象的refreshExpire()函数
         cache.expire().refreshExpire(cache.keySet());
     }
 
