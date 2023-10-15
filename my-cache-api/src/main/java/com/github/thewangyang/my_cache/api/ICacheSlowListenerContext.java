@@ -11,7 +11,7 @@ public interface ICacheSlowListenerContext {
     Object[] params();
 
     //获得方法执行结果
-    Object[] result();
+    Object result();
 
     //获得开始时间
     long startTimeMills();

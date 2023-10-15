@@ -12,8 +12,6 @@ public class CacheInterceptorRefresh<K, V> implements ICacheInterceptor<K, V> {
 
     private static final Log log = LogFactory.getLog(CacheInterceptorRefresh.class);
 
-
-
     @Override
     public void before(ICacheInterceptorContext<K, V> context) {
         log.debug("Refresh start");

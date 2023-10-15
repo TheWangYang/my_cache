@@ -16,7 +16,7 @@ public class CacheSlowListenerContext implements ICacheSlowListenerContext {
     private Object[] params;
 
     // 定义结果数组
-    private Object[] result;
+    private Object result;
 
     // 定义开始时间
     private long startTimeMills;
@@ -58,11 +58,11 @@ public class CacheSlowListenerContext implements ICacheSlowListenerContext {
 
 
     @Override
-    public Object[] result() {
+    public Object result() {
         return result;
     }
 
-    public CacheSlowListenerContext result(Object[] result) {
+    public CacheSlowListenerContext result(Object result) {
         this.result = result;
         return this;
     }

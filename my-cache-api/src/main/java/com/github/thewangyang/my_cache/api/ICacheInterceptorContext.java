@@ -16,7 +16,7 @@ public interface ICacheInterceptorContext<K, V> {
     Object[] params();
 
     // 方法执行的结果
-    Object[] result();
+    Object result();
 
     // 方法的开始时间
     long startMills();
