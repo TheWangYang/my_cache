@@ -41,7 +41,8 @@ public class LruMapCircleList<K, V> implements ILruMap<K, V> {
 
     //删除最老的元素
     @Override
-    public ICacheEntry removeEldest() {
+    public ICacheEntry<K, V> removeEldest() {
+
         if(isEmpty()){//如果为空，则提示无法删除
             log.error("当前链表为空，无法删除");
             throw new CacheRuntimeException("不可删除头结点");
@@ -75,7 +76,6 @@ public class LruMapCircleList<K, V> implements ILruMap<K, V> {
         //如果while循环中没有找到对应的元素
         //那么直接返回第一个元素即可
         CircleListNode<K, V> firstNode = this.head.next();
-
         //返回CacheEntry对象
         return CacheEntry.of(firstNode.key(), firstNode.value());
 
@@ -126,7 +126,7 @@ public class LruMapCircleList<K, V> implements ILruMap<K, V> {
         if(ObjectUtil.isNull(node)){
             //如果为null
             log.warn("对应节点不存在，key = {}", key);
-            return;
+            return ;
         }else{
             //如果不为null
             CircleListNode<K, V> pre = node.pre();

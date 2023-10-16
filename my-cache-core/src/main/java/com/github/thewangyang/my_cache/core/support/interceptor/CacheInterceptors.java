@@ -20,7 +20,6 @@ public class CacheInterceptors{
     public static List<ICacheInterceptor> commonInterceptorList(){
         List<ICacheInterceptor> list = new ArrayList<>();
         list.add(new CacheInterceptorCost());
-
         return list;
     }
 
@@ -28,7 +27,6 @@ public class CacheInterceptors{
     public static List<ICacheInterceptor> refreshInterceptorList(){
         List<ICacheInterceptor> list = new ArrayList<>();
         list.add(new CacheInterceptorRefresh());
-
         return list;
     }
 
@@ -37,6 +35,7 @@ public class CacheInterceptors{
     public static ICacheInterceptor aofInterceptor(){
         return new CacheInterceptorAof();
     }
+
 
     @SuppressWarnings("all")
     public static ICacheInterceptor evictInterceptor(){
