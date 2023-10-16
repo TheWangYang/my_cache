@@ -27,5 +27,4 @@ public @interface CacheInterceptor {
     //主要用于 LRU/LFU 等删除策略
     boolean evict() default false;
 
-
 }
