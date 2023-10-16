@@ -7,7 +7,7 @@ public class PersistRdbEntry<K, V> {
     public V value;
 
     //定义过期时间
-    public long expire;
+    public Long expire;
 
     public K getKey() {
         return key;
@@ -25,7 +25,7 @@ public class PersistRdbEntry<K, V> {
         this.value = value;
     }
 
-    public long getExpire() {
+    public Long getExpire() {
         return expire;
     }
 
