@@ -123,6 +123,7 @@ public class CacheBs<K,V> {
 
     // build方法
     public ICache<K,V> build(){
+
         Cache<K,V> cache = new Cache<>();
         cache.map(map);
         cache.evict(evict);

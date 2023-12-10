@@ -57,6 +57,12 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.github.houbb</groupId>
+                <artifactId>test-core</artifactId>
+                <version>${test.version}</version>
+            </dependency>
+
 <!--            &lt;!&ndash;============================== INTER ==============================&ndash;&gt;-->
 <!--            <dependency>-->
 <!--                <groupId>com.github.houbb</groupId>-->

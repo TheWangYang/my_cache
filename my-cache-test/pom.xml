@@ -11,6 +11,20 @@
 
     <artifactId>my-cache-test</artifactId>
 
+    <dependencies>
+        <!--============================== SELF ==============================-->
+        <dependency>
+            <groupId>com.github.thewangyang</groupId>
+            <artifactId>my-cache-core</artifactId>
+        </dependency>
+
+        <!--============================== INTER ==============================-->
+        <dependency>
+            <groupId>com.github.houbb</groupId>
+            <artifactId>test-core</artifactId>
+        </dependency>
+    </dependencies>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
