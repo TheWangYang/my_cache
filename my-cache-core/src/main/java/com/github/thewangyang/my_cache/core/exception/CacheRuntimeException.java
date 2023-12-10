@@ -1,5 +1,6 @@
 package com.github.thewangyang.my_cache.core.exception;
 
+
 /**
  * 定义缓存运行时异常类
  * @author thewangyang
@@ -8,6 +9,7 @@ package com.github.thewangyang.my_cache.core.exception;
 public class CacheRuntimeException extends RuntimeException {
 
     public CacheRuntimeException() {
+
     }
 
     public CacheRuntimeException(String message) {

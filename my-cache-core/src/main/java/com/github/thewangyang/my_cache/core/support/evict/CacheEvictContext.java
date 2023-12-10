@@ -33,6 +33,11 @@ public class CacheEvictContext<K, V> implements ICacheEvictContext<K, V> {
         return cache;
     }
 
+    public CacheEvictContext<K, V> cache(ICache<K,V> cache) {
+        this.cache = cache;
+        return this;
+    }
+
     @Override
     public int size() {
         return size;

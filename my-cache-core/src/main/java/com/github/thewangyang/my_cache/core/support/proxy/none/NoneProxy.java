@@ -6,7 +6,7 @@ import com.github.thewangyang.my_cache.core.support.proxy.ICacheProxy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-// 代理类
+
 // 没有代理的类的实现
 public class NoneProxy implements ICacheProxy, InvocationHandler {
 

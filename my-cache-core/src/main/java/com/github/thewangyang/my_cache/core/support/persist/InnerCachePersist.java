@@ -24,7 +24,7 @@ public class InnerCachePersist<K, V>{
     private static final ScheduledExecutorService EXECUTOR_SERVICE = Executors.newSingleThreadScheduledExecutor();
 
 
-    private InnerCachePersist(ICache<K, V> cache, ICachePersist<K, V> persist){
+    public InnerCachePersist(ICache<K, V> cache, ICachePersist<K, V> persist){
         this.cache = cache;
         this.cachePersist = persist;
 
